@@ -7,6 +7,8 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MeetingController as AdminMeetingController;
+use App\Http\Controllers\Admin\HousePricingController;
+use App\Http\Controllers\Admin\ProjectProgressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,4 +89,28 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('/time-slots/create', [AdminMeetingController::class, 'createTimeSlot'])->name('meetings.create-time-slot');
     Route::post('/time-slots', [AdminMeetingController::class, 'storeTimeSlot'])->name('meetings.store-time-slot');
     Route::delete('/time-slots/{timeSlot}', [AdminMeetingController::class, 'deleteTimeSlot'])->name('meetings.delete-time-slot');
+    
+    // House pricing management
+    Route::get('/house-pricing', [HousePricingController::class, 'index'])->name('house-pricing.index');
+    Route::get('/house-pricing/create', [HousePricingController::class, 'create'])->name('house-pricing.create');
+    Route::post('/house-pricing', [HousePricingController::class, 'store'])->name('house-pricing.store');
+    Route::get('/house-pricing/{housePricing}/edit', [HousePricingController::class, 'edit'])->name('house-pricing.edit');
+    Route::put('/house-pricing/{housePricing}', [HousePricingController::class, 'update'])->name('house-pricing.update');
+    Route::delete('/house-pricing/{housePricing}', [HousePricingController::class, 'destroy'])->name('house-pricing.destroy');
+    
+    // Project progress management
+    Route::get('/projects', [ProjectProgressController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [ProjectProgressController::class, 'create'])->name('projects.create');
+    Route::post('/projects', [ProjectProgressController::class, 'store'])->name('projects.store');
+    Route::get('/projects/{project}', [ProjectProgressController::class, 'show'])->name('projects.show');
+    Route::get('/projects/{project}/edit', [ProjectProgressController::class, 'edit'])->name('projects.edit');
+    Route::put('/projects/{project}', [ProjectProgressController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{project}', [ProjectProgressController::class, 'destroy'])->name('projects.destroy');
+    
+    // Project progress updates
+    Route::get('/projects/{project}/updates/create', [ProjectProgressController::class, 'createUpdate'])->name('projects.updates.create');
+    Route::post('/projects/{project}/updates', [ProjectProgressController::class, 'storeUpdate'])->name('projects.updates.store');
+    Route::get('/projects/updates/{update}/edit', [ProjectProgressController::class, 'editUpdate'])->name('projects.updates.edit');
+    Route::put('/projects/updates/{update}', [ProjectProgressController::class, 'updateUpdate'])->name('projects.updates.update');
+    Route::delete('/projects/updates/{update}', [ProjectProgressController::class, 'destroyUpdate'])->name('projects.updates.destroy');
 });
