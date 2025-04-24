@@ -44,7 +44,7 @@
                                     <p class="mt-2 text-gray-600">{{ $service->description }}</p>
                                     @auth
                                         <div class="mt-4">
-                                            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                            <a href="{{ route('meetings.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                                                 Book a Consultation
                                             </a>
                                         </div>
