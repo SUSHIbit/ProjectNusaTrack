@@ -1,4 +1,3 @@
-// resources/views/meetings/create.blade.php
 @extends('layouts.main')
 
 @section('title', 'Book a Meeting')

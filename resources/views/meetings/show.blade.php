@@ -1,4 +1,3 @@
-// resources/views/meetings/show.blade.php
 @extends('layouts.main')
 
 @section('title', 'Meeting Details')

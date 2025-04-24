@@ -1,4 +1,3 @@
-// resources/views/admin/meetings/index.blade.php
 @extends('layouts.admin')
 
 @section('title', 'Manage Meetings')

@@ -1,4 +1,3 @@
-// resources/views/admin/meetings/create_time_slot.blade.php
 @extends('layouts.admin')
 
 @section('title', 'Create Time Slot')
