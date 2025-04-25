@@ -48,16 +48,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
+    // Meeting request routes - MOVED THESE BEFORE THE GENERAL MEETING ROUTES
+    Route::get('/meetings/request', [MeetingRequestController::class, 'create'])->name('meetings.request');
+    Route::post('/meetings/request', [MeetingRequestController::class, 'store'])->name('meetings.request.store');
+    
     // Meeting routes for regular users
     Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
     Route::get('/meetings/create', [MeetingController::class, 'create'])->name('meetings.create');
     Route::post('/meetings', [MeetingController::class, 'store'])->name('meetings.store');
     Route::get('/meetings/{meeting}', [MeetingController::class, 'show'])->name('meetings.show');
     Route::delete('/meetings/{meeting}', [MeetingController::class, 'cancel'])->name('meetings.cancel');
-    
-    // Meeting request routes (new)
-    Route::get('/meetings/request', [MeetingRequestController::class, 'create'])->name('meetings.request');
-    Route::post('/meetings/request', [MeetingRequestController::class, 'store'])->name('meetings.request.store');
 });
 
 // Admin routes
