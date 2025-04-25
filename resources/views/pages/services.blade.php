@@ -57,14 +57,14 @@
                                     <p class="mt-2 text-gray-600">{{ $service->description }}</p>
                                     @auth
                                         <div class="mt-4 flex space-x-2">
-                                            <a href="{{ route('meetings.request') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                                Request a Meeting
+                                            <a href="{{ route('meetings.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                                Book a Meeting
                                             </a>
                                         </div>
                                     @else
                                         <div class="mt-4">
                                             <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                                Login to Request
+                                                Login to Book
                                             </a>
                                         </div>
                                     @endauth
