@@ -5,8 +5,10 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\MeetingRequestController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MeetingController as AdminMeetingController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\HousePricingController;
 use App\Http\Controllers\Admin\ProjectProgressController;
 use Illuminate\Support\Facades\Route;
@@ -52,12 +54,24 @@ Route::middleware('auth')->group(function () {
     Route::post('/meetings', [MeetingController::class, 'store'])->name('meetings.store');
     Route::get('/meetings/{meeting}', [MeetingController::class, 'show'])->name('meetings.show');
     Route::delete('/meetings/{meeting}', [MeetingController::class, 'cancel'])->name('meetings.cancel');
+    
+    // Meeting request routes (new)
+    Route::get('/meetings/request', [MeetingRequestController::class, 'create'])->name('meetings.request');
+    Route::post('/meetings/request', [MeetingRequestController::class, 'store'])->name('meetings.request.store');
 });
 
 // Admin routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
     // Admin dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    
+    // Location management (new)
+    Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+    Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
+    Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
+    Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
+    Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
     
     // Service management
     Route::get('/services', [AdminController::class, 'services'])->name('services');
@@ -84,11 +98,20 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('/meetings/{meeting}', [AdminMeetingController::class, 'show'])->name('meetings.show');
     Route::put('/meetings/{meeting}', [AdminMeetingController::class, 'update'])->name('meetings.update');
     
+    // Meeting request management (new)
+    Route::get('/meeting-requests', [AdminMeetingController::class, 'requests'])->name('meetings.requests');
+    Route::get('/meeting-requests/{meeting}/process', [AdminMeetingController::class, 'processRequest'])->name('meetings.process-request');
+    Route::put('/meeting-requests/{meeting}', [AdminMeetingController::class, 'updateRequest'])->name('meetings.update-request');
+    
     // Time slot management
     Route::get('/time-slots', [AdminMeetingController::class, 'timeSlots'])->name('meetings.time-slots');
     Route::get('/time-slots/create', [AdminMeetingController::class, 'createTimeSlot'])->name('meetings.create-time-slot');
     Route::post('/time-slots', [AdminMeetingController::class, 'storeTimeSlot'])->name('meetings.store-time-slot');
     Route::delete('/time-slots/{timeSlot}', [AdminMeetingController::class, 'deleteTimeSlot'])->name('meetings.delete-time-slot');
+    
+    // Batch time slots (new)
+    Route::get('/time-slots/batch', [AdminMeetingController::class, 'batchTimeSlots'])->name('meetings.batch-time-slots');
+    Route::post('/time-slots/batch', [AdminMeetingController::class, 'storeBatchTimeSlots'])->name('meetings.store-batch-time-slots');
     
     // House pricing management
     Route::get('/house-pricing', [HousePricingController::class, 'index'])->name('house-pricing.index');

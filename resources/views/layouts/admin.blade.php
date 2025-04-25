@@ -25,21 +25,69 @@
                 <a href="{{ route('admin.dashboard') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.dashboard') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
                     <span class="ml-4">Dashboard</span>
                 </a>
-                <a href="{{ route('admin.meetings.index') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.meetings.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                    <span class="ml-4">Meetings</span>
-                </a>
-                <a href="{{ route('admin.meetings.time-slots') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.meetings.time-slots') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                    <span class="ml-4">Time Slots</span>
-                </a>
-                <a href="{{ route('admin.services') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.services*') && !request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                    <span class="ml-4">Services</span>
-                </a>
-                <a href="{{ route('admin.service-categories') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                    <span class="ml-4">Service Categories</span>
-                </a>
-                <a href="{{ route('admin.users') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.users*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                    <span class="ml-4">Users</span>
-                </a>
+                
+                <!-- Meeting Management Section -->
+                <div class="mt-4">
+                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                        Meeting Management
+                    </h3>
+                    <div class="mt-2 space-y-1">
+                        <a href="{{ route('admin.meetings.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.meetings.index') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">All Meetings</span>
+                        </a>
+                        <a href="{{ route('admin.meetings.requests') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.meetings.requests') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Meeting Requests</span>
+                        </a>
+                        <a href="{{ route('admin.meetings.time-slots') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.meetings.time-slots') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Time Slots</span>
+                        </a>
+                        <a href="{{ route('admin.locations.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.locations.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Locations</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Management Section -->
+                <div class="mt-4">
+                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                        Service Management
+                    </h3>
+                    <div class="mt-2 space-y-1">
+                        <a href="{{ route('admin.services') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.services*') && !request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Services</span>
+                        </a>
+                        <a href="{{ route('admin.service-categories') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Service Categories</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project Management Section -->
+                <div class="mt-4">
+                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                        Project Management
+                    </h3>
+                    <div class="mt-2 space-y-1">
+                        <a href="{{ route('admin.house-pricing.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.house-pricing.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">House Pricing</span>
+                        </a>
+                        <a href="{{ route('admin.projects.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.projects.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Project Progress</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- User Management Section -->
+                <div class="mt-4">
+                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                        User Management
+                    </h3>
+                    <div class="mt-2 space-y-1">
+                        <a href="{{ route('admin.users') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.users*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                            <span class="ml-4">Users</span>
+                        </a>
+                    </div>
+                </div>
                 
                 <div class="border-t border-gray-700 my-4"></div>
                 
@@ -79,35 +127,77 @@
                             </button>
                         </div>
                         
-                        <div class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 overflow-y-auto transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0">
-                            <div class="flex items-center justify-center h-16 px-6 bg-gray-900">
+                        <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+                            <div class="flex-shrink-0 flex items-center px-4">
                                 <span class="text-xl font-semibold text-white">NusaTrack Admin</span>
                             </div>
-                            <nav class="mt-5 px-3">
+                            <nav class="mt-5 px-3 space-y-1">
                                 <a href="{{ route('admin.dashboard') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.dashboard') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
                                     <span class="ml-4">Dashboard</span>
                                 </a>
-                                <a href="{{ route('admin.meetings.index') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.meetings.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">Meetings</span>
-                                </a>
-                                <a href="{{ route('admin.meetings.time-slots') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.meetings.time-slots') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">Time Slots</span>
-                                </a>
-                                <a href="{{ route('admin.services') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.services*') && !request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">Services</span>
-                                </a>
-                                <a href="{{ route('admin.service-categories') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">Service Categories</span>
-                                </a>
-                                <a href="{{ route('admin.house-pricing.index') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.house-pricing.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">House Pricing</span>
-                                </a>
-                                <a href="{{ route('admin.projects.index') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.projects.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">Project Progress</span>
-                                </a>
-                                <a href="{{ route('admin.users') }}" class="group flex items-center px-4 py-2 mt-1 text-white rounded-md {{ request()->routeIs('admin.users*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
-                                    <span class="ml-4">Users</span>
-                                </a>
+                                
+                                <!-- Meeting Management Section -->
+                                <div class="mt-4">
+                                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                                        Meeting Management
+                                    </h3>
+                                    <div class="mt-2 space-y-1">
+                                        <a href="{{ route('admin.meetings.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.meetings.index') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">All Meetings</span>
+                                        </a>
+                                        <a href="{{ route('admin.meetings.requests') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.meetings.requests') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Meeting Requests</span>
+                                        </a>
+                                        <a href="{{ route('admin.meetings.time-slots') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.meetings.time-slots') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Time Slots</span>
+                                        </a>
+                                        <a href="{{ route('admin.locations.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.locations.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Locations</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Service Management Section -->
+                                <div class="mt-4">
+                                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                                        Service Management
+                                    </h3>
+                                    <div class="mt-2 space-y-1">
+                                        <a href="{{ route('admin.services') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.services*') && !request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Services</span>
+                                        </a>
+                                        <a href="{{ route('admin.service-categories') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.service-categories*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Service Categories</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Project Management Section -->
+                                <div class="mt-4">
+                                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                                        Project Management
+                                    </h3>
+                                    <div class="mt-2 space-y-1">
+                                        <a href="{{ route('admin.house-pricing.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.house-pricing.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">House Pricing</span>
+                                        </a>
+                                        <a href="{{ route('admin.projects.index') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.projects.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Project Progress</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- User Management Section -->
+                                <div class="mt-4">
+                                    <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                                        User Management
+                                    </h3>
+                                    <div class="mt-2 space-y-1">
+                                        <a href="{{ route('admin.users') }}" class="group flex items-center px-4 py-2 text-white rounded-md {{ request()->routeIs('admin.users*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}">
+                                            <span class="ml-4">Users</span>
+                                        </a>
+                                    </div>
+                                </div>
                                 
                                 <div class="border-t border-gray-700 my-4"></div>
                                 

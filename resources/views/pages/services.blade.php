@@ -12,6 +12,19 @@
             <div class="text-center">
                 <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Our Services</h1>
                 <p class="mt-6 text-xl max-w-3xl mx-auto">Comprehensive construction solutions tailored to your needs. Explore our range of services designed to make your construction project a success.</p>
+                
+                <!-- Added Request Meeting Button -->
+                <div class="mt-8">
+                    @auth
+                        <a href="{{ route('meetings.request') }}" class="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50">
+                            Request a Meeting
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50">
+                            Login to Request a Meeting
+                        </a>
+                    @endauth
+                </div>
             </div>
         </div>
     </div>
@@ -43,15 +56,15 @@
                                     <h3 class="text-xl font-semibold text-gray-900">{{ $service->name }}</h3>
                                     <p class="mt-2 text-gray-600">{{ $service->description }}</p>
                                     @auth
-                                        <div class="mt-4">
-                                            <a href="{{ route('meetings.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                                Book a Consultation
+                                        <div class="mt-4 flex space-x-2">
+                                            <a href="{{ route('meetings.request') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                                Request a Meeting
                                             </a>
                                         </div>
                                     @else
                                         <div class="mt-4">
                                             <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                                Login to Book
+                                                Login to Request
                                             </a>
                                         </div>
                                     @endauth
@@ -136,8 +149,8 @@
                 <p class="mt-4 text-xl text-indigo-100">Get in touch with us to discuss your construction needs.</p>
                 <div class="mt-8 flex justify-center">
                     @auth
-                        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50">
-                            Book a Meeting
+                        <a href="{{ route('meetings.request') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50">
+                            Request a Meeting
                         </a>
                     @else
                         <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50">

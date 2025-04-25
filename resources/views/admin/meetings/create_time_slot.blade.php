@@ -12,6 +12,7 @@
     
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold">Create Time Slot</h1>
+        <a href="{{ route('admin.meetings.batch-time-slots') }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Batch Create Time Slots</a>
     </div>
     
     @if($errors->any())
@@ -58,6 +59,14 @@
                 <p class="text-sm text-gray-500 mt-1">This will create a time slot for each day from the start date until this date.</p>
             </div>
             
+            <div id="exclude_weekends_group" class="mb-4" style="{{ old('repeat') ? '' : 'display: none;' }}">
+                <div class="flex items-center">
+                    <input type="checkbox" id="exclude_weekends" name="exclude_weekends" value="1" {{ old('exclude_weekends') ? 'checked' : '' }} class="border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                    <label for="exclude_weekends" class="ml-2 text-gray-700 font-medium">Exclude weekends</label>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">When checked, no time slots will be created for Saturdays and Sundays.</p>
+            </div>
+            
             <div class="flex justify-end">
                 <a href="{{ route('admin.meetings.time-slots') }}" class="px-4 py-2 border border-gray-300 rounded text-gray-700 mr-2 hover:bg-gray-50">Cancel</a>
                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Create Time Slot</button>
@@ -71,14 +80,40 @@
         const repeatCheckbox = document.getElementById('repeat');
         const repeatUntilGroup = document.getElementById('repeat_until_group');
         const repeatUntilInput = document.getElementById('repeat_until');
+        const excludeWeekendsGroup = document.getElementById('exclude_weekends_group');
         
         repeatCheckbox.addEventListener('change', function() {
             if (this.checked) {
                 repeatUntilGroup.style.display = 'block';
+                excludeWeekendsGroup.style.display = 'block';
                 repeatUntilInput.setAttribute('required', 'required');
             } else {
                 repeatUntilGroup.style.display = 'none';
+                excludeWeekendsGroup.style.display = 'none';
                 repeatUntilInput.removeAttribute('required');
+            }
+        });
+        
+        // Validate that end time is after start time
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const startTime = document.getElementById('start_time').value;
+            const endTime = document.getElementById('end_time').value;
+            
+            if (startTime >= endTime) {
+                e.preventDefault();
+                alert('End time must be later than start time');
+            }
+        });
+        
+        // Validate that selected date is not in the past
+        document.getElementById('date').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < today) {
+                alert('Cannot create time slots for past dates.');
+                this.value = '';
             }
         });
     });
